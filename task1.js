@@ -4,8 +4,9 @@ process.stdin.on('data', input => {
     let pi = 3.14
     // console.log(typeof input)
     // console.log(input)
-    // console.log(jariJari)
-    if(typeof jariJari === 'number'){
+    console.log(typeof jariJari)
+    // if(typeof jariJari == 'number'){
+    if( Number.isNaN(jariJari) !== true ){
         if(jariJari % 7 === 0){
             pi = 22/7
         }else{
@@ -19,5 +20,6 @@ process.stdin.on('data', input => {
         console.log(`Luas dari lingkaran dengan jari-jari = ${jariJari} adalah ${luas}`)
     }else{
         console.log("Masukan harus berupa angka")
+        process.exit()
     }
 })
