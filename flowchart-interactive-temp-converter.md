@@ -5,6 +5,20 @@ flowchart TD
 
 start@{"shape": circle, "label": "Mulai"}
 iTemp@{"shape": lean-l, "label": "Input: temp,tempSource,tempDestination"}
+
+xZ@{"shape": rectangle, "label": x = 0}
+isxZero@{"shape": diamond, "label": x === 0}
+isxOne@{"shape": diamond, "label": x === 1}
+isxTwo@{"shape": diamond, "label": x === 2}
+isxOther@{"shape": diamond, "label": x = 0}
+
+showInputTempText@{"shape": lean-l, "label": "Output: #quot;Masukan angka derajat suhu :#quot;"}
+tempEqInput@{"shape": rectangle, "label": temp = parseInt(input.toString().trim())}
+showInputTempSourceText@{"shape": lean-l, "label": "Output: #quot;Masukan angka derajat suhu :#quot;"}
+tempSourceEqInput@{"shape": rectangle, "label": tempSource = input.toString().trim()}
+showInputTempDestinationText@{"shape": lean-l, "label": "Output: #quot;Masukan angka derajat suhu :#quot;"}
+tempDestinationEqInput@{"shape": rectangle, "label": tempDestination = input.toString().trim()}
+
 stop@{"shape": dbl-circ, "label": "Selesai"}
 isNumberTemp@{"shape": diamond, "label": Number.isNaN(temp) !== true}
 isNumberTempFalse@{"shape": rectangle, "label": "Output: #quot;Angka suhu tidak valid coba lagi!#quot;"}
@@ -64,8 +78,21 @@ outputOtherToOther@{"shape": lean-l, "label": "Output: #quot;Pilihan sumber atau
 
 
 %% ===================================================
-start-->iTemp-->isNumberTemp--True-->isTempSourceNotEqualTempDestination--True-->isCelciusToReamur
-
+%% xZ
+%% isxZero
+%% isxOne
+%% isxTwo
+%% isxOther
+%% showInputTempText
+%% tempEqInput
+%% showInputTempSourceText
+%% tempSourceEqInput
+%% showInputTempDestinationText
+%% tempDestinationEqInput
+start-->xZ-->isxZero--True-->showInputTempText-->tempEqInput
+isxZero--False-->isxOne--True-->showInputTempSourceText-->tempSourceEqInput
+isxOne--False-->isxTwo--True-->showInputTempDestinationText-->tempDestinationEqInput-->iTemp-->isNumberTemp--True-->isTempSourceNotEqualTempDestination--True-->isCelciusToReamur
+isxTwo--False-->isXOther-->isxZero
 %% Celcius
 %% Celcius to Reamur
 isCelciusToReamur--True-->outputCelciusToReamur-->stop
