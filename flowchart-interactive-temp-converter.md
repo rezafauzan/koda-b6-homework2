@@ -4,13 +4,16 @@
 flowchart TD
 
 start@{"shape": circle, "label": "Mulai"}
-iTemp@{"shape": lean-l, "label": "Input: temp,tempSource,tempDestination"}
+input@{"shape": lean-l, "label": "Input: input = process.stdin.on(#quot;data#quot;)"}
+
 
 xZ@{"shape": rectangle, "label": x = 0}
 isxZero@{"shape": diamond, "label": x === 0}
 isxOne@{"shape": diamond, "label": x === 1}
 isxTwo@{"shape": diamond, "label": x === 2}
 isxOther@{"shape": diamond, "label": x = 0}
+xEqOne@{"shape": rectangle, "label": x = 1}
+xEqTwo@{"shape": rectangle, "label": x = 2}
 
 showInputTempText@{"shape": lean-l, "label": "Output: #quot;Masukan angka derajat suhu :#quot;"}
 tempEqInput@{"shape": rectangle, "label": temp = parseInt(input.toString().trim())}
@@ -89,19 +92,19 @@ outputOtherToOther@{"shape": lean-l, "label": "Output: #quot;Pilihan sumber atau
 %% tempSourceEqInput
 %% showInputTempDestinationText
 %% tempDestinationEqInput
-start-->xZ-->isxZero--True-->showInputTempText-->tempEqInput-->isxZero
-isxZero--False-->isxOne--True-->showInputTempSourceText-->tempSourceEqInput-->isxZero
-isxOne--False-->isxTwo--True-->showInputTempDestinationText-->tempDestinationEqInput-->iTemp-->isNumberTemp--True-->isTempSourceNotEqualTempDestination--True-->isCelciusToReamur
-isxTwo--False-->isxOther-->isxZero
+start-->xZ-->showInputTempText-->input-->isxZero--True-->tempEqInput-->xEqOne-->input
+isxZero--False-->isxOne--True-->showInputTempSourceText-->tempSourceEqInput-->xEqTwo-->input
+isxOne--False-->isxTwo--True-->showInputTempDestinationText-->tempDestinationEqInput-->isNumberTemp--True-->isTempSourceNotEqualTempDestination--True-->isCelciusToReamur
+isxTwo--False-->isxOther-->input
 %% Celcius
 %% Celcius to Reamur
-isCelciusToReamur--True-->outputCelciusToReamur-->stop
+isCelciusToReamur--True-->outputCelciusToReamur-->input
 
 %% Celcius to Fahrenheit
-isCelciusToReamur--False-->isCelciusToFahrenheit--True-->outputCelciusToFahrenheit-->stop
+isCelciusToReamur--False-->isCelciusToFahrenheit--True-->outputCelciusToFahrenheit-->input
 
 %% Celcius to Kelvin
-isCelciusToFahrenheit--False-->isCelciusToKelvin--True-->outputCelciusToKelvin-->stop
+isCelciusToFahrenheit--False-->isCelciusToKelvin--True-->outputCelciusToKelvin-->input
 
 %% To Reamur Section 
 isCelciusToKelvin--False-->isReamurToCelcius
@@ -109,15 +112,15 @@ isCelciusToKelvin--False-->isReamurToCelcius
 %% Reamur
 
 %% Reamur to Celcius
-isReamurToCelcius--True-->outputReamurToCelcius-->stop
+isReamurToCelcius--True-->outputReamurToCelcius-->input
 isReamurToCelcius--False-->isReamurToFahrenheit
 
 %% Reamur to Fahrenheit
-isReamurToFahrenheit--True-->outputReamurToFahrenheit-->stop
+isReamurToFahrenheit--True-->outputReamurToFahrenheit-->input
 isReamurToFahrenheit--False-->isReamurToKelvin
 
 %% Reamur to Kelvin
-isReamurToKelvin--True-->outputReamurToKelvin-->stop
+isReamurToKelvin--True-->outputReamurToKelvin-->input
 
 %% To Fahrenheit Section 
 isReamurToKelvin--False-->isFahrenheitToCelcius
@@ -125,15 +128,15 @@ isReamurToKelvin--False-->isFahrenheitToCelcius
 %% Fahrenheit
 
 %% Fahrenheit to Celcius
-isFahrenheitToCelcius--True-->outputFahrenheitToCelcius-->stop
+isFahrenheitToCelcius--True-->outputFahrenheitToCelcius-->input
 isFahrenheitToCelcius--False-->isFahrenheitToReamur
 
 %% Fahrenheit to Reamur
-isFahrenheitToReamur--True-->outputFahrenheitToReamur-->stop
+isFahrenheitToReamur--True-->outputFahrenheitToReamur-->input
 isFahrenheitToReamur--False-->isFahrenheitToKelvin
 
 %% Fahrenheit to Kelvin
-isFahrenheitToKelvin--True-->outputFahrenheitToKelvin-->stop
+isFahrenheitToKelvin--True-->outputFahrenheitToKelvin-->input
 
 %% To Kelvin Section 
 isFahrenheitToKelvin--False-->isKelvinToCelcius
@@ -141,19 +144,19 @@ isFahrenheitToKelvin--False-->isKelvinToCelcius
 %% Kelvin
 
 %% Kelvin to Celcius
-isKelvinToCelcius--True-->outputKelvinToCelcius-->stop
+isKelvinToCelcius--True-->outputKelvinToCelcius-->input
 isKelvinToCelcius--False-->isKelvinToReamur
 
 %% Kelvin to Reamur
-isKelvinToReamur--True-->outputKelvinToReamur-->stop
+isKelvinToReamur--True-->outputKelvinToReamur-->input
 isKelvinToReamur--False-->isKelvinToFahrenheit
 
 %% Kelvin to Fahrenheit
-isKelvinToFahrenheit--True-->outputKelvinToFahrenheit-->stop
+isKelvinToFahrenheit--True-->outputKelvinToFahrenheit-->input
 
 %% Not an Option nice try
-isKelvinToFahrenheit--False-->outputOtherToOther-->stop
+isKelvinToFahrenheit--False-->outputOtherToOther-->input
 
-isNumberTemp--False-->isNumberTempFalse-->stop
-isTempSourceNotEqualTempDestination--False-->isTempSourceEqualTempDestinationFalse-->stop
+isNumberTemp--False-->isNumberTempFalse-->input
+isTempSourceNotEqualTempDestination--False-->isTempSourceEqualTempDestinationFalse-->input
 ```
