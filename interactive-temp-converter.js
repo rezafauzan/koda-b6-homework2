@@ -1,13 +1,15 @@
 let x = 0
 let temp, tempSource, tempDestination 
-console.log("Masukan angka suhu kemudian satuan suhu awal kemudian satuan suhu akhir ['celcius', 'reamur', 'kelvin', 'fahrenheit']:")
+console.log("Masukan angka derajat suhu :")
 process.stdin.on('data', input => {
     if(x === 0 ){
         temp = parseInt(input.toString().trim())
         x = 1 
+        console.log("Masukan satuan suhu awal ['celcius', 'reamur', 'kelvin', 'fahrenheit'] :")
     } else if(x === 1 ){
         tempSource = input.toString().trim() 
         x = 2
+        console.log("Masukan satuan suhu tujuan ['celcius', 'reamur', 'kelvin', 'fahrenheit'] :")
     }
     else if (x === 2){
         tempDestination = input.toString().trim() 
