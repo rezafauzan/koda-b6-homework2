@@ -7,7 +7,7 @@ start@{"shape": circle, "label": "Mulai"}
 input@{"shape": lean-l, "label": "Input: jariJari"}
 parseInput@{"shape": rectangle, "label": jariJari = parseInt(input.toString().trim())}
 initPi@{"shape": rectangle, "label": "pi = 3.14"}
-isjariJariNumber@{"shape": diamond, "label": typeof jariJari === 'number'}
+isjariJariNumber@{"shape": diamond, "label": Number.isNaN(jariJari) !== true}
 isjariJariMultiseven@{"shape": diamond, "label": jariJari % 7 === 0}
 isjariJariMultisevenTrue@{"shape": diamond, "label": pi = 22/7}
 isjariJariMultisevenFalse@{"shape": diamond, "label": pi = 3.14}

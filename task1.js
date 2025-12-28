@@ -4,7 +4,7 @@ process.stdin.on('data', input => {
     let pi = 3.14
     // console.log(typeof input)
     // console.log(input)
-    console.log(typeof jariJari)
+    // console.log(typeof jariJari)
     // if(typeof jariJari == 'number'){
     if( Number.isNaN(jariJari) !== true ){
         if(jariJari % 7 === 0){
