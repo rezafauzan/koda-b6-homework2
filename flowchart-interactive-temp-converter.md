@@ -89,10 +89,10 @@ outputOtherToOther@{"shape": lean-l, "label": "Output: #quot;Pilihan sumber atau
 %% tempSourceEqInput
 %% showInputTempDestinationText
 %% tempDestinationEqInput
-start-->xZ-->isxZero--True-->showInputTempText-->tempEqInput
-isxZero--False-->isxOne--True-->showInputTempSourceText-->tempSourceEqInput
+start-->xZ-->isxZero--True-->showInputTempText-->tempEqInput-->isxZero
+isxZero--False-->isxOne--True-->showInputTempSourceText-->tempSourceEqInput-->isxZero
 isxOne--False-->isxTwo--True-->showInputTempDestinationText-->tempDestinationEqInput-->iTemp-->isNumberTemp--True-->isTempSourceNotEqualTempDestination--True-->isCelciusToReamur
-isxTwo--False-->isXOther-->isxZero
+isxTwo--False-->isxOther-->isxZero
 %% Celcius
 %% Celcius to Reamur
 isCelciusToReamur--True-->outputCelciusToReamur-->stop
