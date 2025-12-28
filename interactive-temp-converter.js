@@ -52,5 +52,6 @@ process.stdin.on('data', input => {
             console.log("Masukan harus berupa angka")
         }
         x=0
+        console.log("Masukan angka derajat suhu :")
     }
 })
